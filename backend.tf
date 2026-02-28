@@ -1,8 +1,8 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "rg-infrastructure-state"
-    storage_account_name = "storageaccountprojectdelta"
+    resource_group_name  = "rg-infra"
+    storage_account_name = "infrastorageacct"
     container_name       = "infra-tfstate"
     key                  = "infra.terraform.tfstate"
   }
-}
+} 

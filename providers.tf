@@ -6,8 +6,6 @@ terraform {
       version = "=4.61.0"
     }
   }
-  backend "azurerm" {
-  }
 }
 
 # 2. Configure the AzureRM Provider
