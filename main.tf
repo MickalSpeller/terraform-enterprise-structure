@@ -27,7 +27,7 @@ resource "azurerm_linux_virtual_machine" "vm01" {
   admin_username      = "labadministrator"
   admin_password = variable.admin_password
   network_interface_ids = [
-    azurerm_network_interface.example.id,
+    azurerm_network_interface.vm-nic-01.id
   ]
 
   os_disk {
