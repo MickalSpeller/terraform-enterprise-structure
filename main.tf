@@ -12,6 +12,12 @@ resource "azurerm_virtual_network" "vnet-hub01" {
   location            = azurerm_resource_group.rg-infra.location
   resource_group_name = azurerm_resource_group.rg-infra.name
 }
+resource "azurerm_subnet" "snet-01" {
+  name                 = "snet-01"
+  resource_group_name  = azurerm_resource_group.rg-infra.name
+  virtual_network_name = azurerm_virtual_network.vnet-hub01.name
+  address_prefixes     = ["10.0.1.0/24"]
+}
 
 resource "azurerm_linux_virtual_machine" "vm01" {
   name                = "vm01"
@@ -19,7 +25,7 @@ resource "azurerm_linux_virtual_machine" "vm01" {
   location            = azurerm_resource_group.rg-infra.location
   size                = "Standard_F2"
   admin_username      = "labadministrator"
-  admin_password = var.admin_password
+  admin_password = variable.admin_password
   network_interface_ids = [
     azurerm_network_interface.example.id,
   ]
@@ -34,5 +40,17 @@ resource "azurerm_linux_virtual_machine" "vm01" {
     offer     = "0001-com-ubuntu-server-jammy"
     sku       = "22_04-lts"
     version   = "latest"
+  }
+
+}
+resource "azurerm_network_interface" "vm-nic-01" {
+  name                = "vm-nic-01"
+  location            = azurerm_resource_group.rg-infra.location
+  resource_group_name = azurerm_resource_group.rg-infra.name
+
+  ip_configuration {
+    name                          = "internal"
+    subnet_id                     = azurerm_subnet.snet-01.id
+    private_ip_address_allocation = "Dynamic"
   }
 }
