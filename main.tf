@@ -25,7 +25,7 @@ resource "azurerm_linux_virtual_machine" "vm01" {
   location            = azurerm_resource_group.rg-infra.location
   size                = "Standard_F2"
   admin_username      = "labadministrator"
-  admin_password = variable.admin_password
+  admin_password = var.admin_password
   network_interface_ids = [
     azurerm_network_interface.vm-nic-01.id
   ]
