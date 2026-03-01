@@ -18,7 +18,7 @@ resource "azurerm_subnet" "subnet-hub01" {
   virtual_network_name = azurerm_virtual_network.vnet-hub01.name
   address_prefixes     = ["10.0.1.0/24"] 
 }
-resource "azurem_virtual_network" "vnet-spoke01" {
+resource "azurerm_virtual_network" "vnet-spoke01" {
   name                = "vnet-spoke01"
   address_space       = ["10.1.0.0/16"]
   location            = azurerm_resource_group.rg-infra.location
