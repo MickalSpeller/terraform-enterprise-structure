@@ -1,4 +1,4 @@
-resource "azurerm_resource_group" "network" {
+resource "azurerm_resource_group" "rg-infra" {
   name     = var.resource_group_name
   location = var.east_region    
 }
