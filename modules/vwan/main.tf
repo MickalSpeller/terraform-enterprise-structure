@@ -1,7 +1,3 @@
-resource "azurerm_resource_group" "rg-infra" { 
-  name     = "rg-project-delta"
-  location = "eastus"
-}
 resource "azurerm_virtual_wan" "vwan" {
   name                = "vwan-global"
   location            = var.east_region
